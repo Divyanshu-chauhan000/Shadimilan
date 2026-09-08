@@ -2,6 +2,11 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const User = require('./models/User');
 
+if (process.env.NODE_ENV !== 'production' && !process.env.RENDER) {
+    const dns = require('dns');
+    dns.setServers(['8.8.8.8', '1.1.1.1']);
+}
+
 const seedAdmin = async () => {
     try {
         if (!process.env.MONGO_URI) {
