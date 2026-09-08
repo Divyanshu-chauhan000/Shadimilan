@@ -8,11 +8,14 @@ const authRoutes = require('./routes/authRoutes');
 const profileRoutes = require('./routes/profileRoutes');
 const enquiryRoutes = require('./routes/enquiryRoutes');
 const adminRoutes = require('./routes/adminRoutes');
-const dns = require('dns');
-dns.setServers([
-    '8.8.8.8',
-    '1.1.1.1'
-])
+// Only override DNS locally, as this breaks Render's internal DNS
+if (process.env.NODE_ENV !== 'production' && !process.env.RENDER) {
+    const dns = require('dns');
+    dns.setServers([
+        '8.8.8.8',
+        '1.1.1.1'
+    ]);
+}
 
 const app = express();
 
