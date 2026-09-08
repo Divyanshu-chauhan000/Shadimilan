@@ -10,7 +10,7 @@ const enquiryRoutes = require('./routes/enquiryRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const dns = require('dns');
 dns.setServers([
-    '0.0.0.0',
+    '8.8.8.8',
     '1.1.1.1'
 ])
 
@@ -21,7 +21,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:5174'], // Client and Admin Vite default ports
+    origin: [
+        process.env.CLIENT_URL || 'http://localhost:5173',
+        process.env.ADMIN_URL || 'http://localhost:5174',
+        'http://localhost:5173',
+        'http://localhost:5174',
+        'http://localhost:5175',
+        'http://localhost:5176'
+    ],
     credentials: true,
 }));
 
