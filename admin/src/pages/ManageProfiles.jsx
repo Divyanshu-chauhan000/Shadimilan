@@ -154,7 +154,7 @@ const ManageProfiles = () => {
                                     </>
                                 )}
                                 <a
-                                    href={`http://localhost:5173/profile/${profile._id}`}
+                                    href={`${import.meta.env.VITE_CLIENT_URL || 'https://shadimilan-client.onrender.com'}/profile/${profile._id}`}
                                     target="_blank"
                                     rel="noreferrer"
                                     className={`${profile.status === 'pending' ? 'flex-1' : 'w-full'} py-3 text-accent-600 hover:bg-accent-50 font-semibold flex justify-center items-center text-sm transition-colors`}
